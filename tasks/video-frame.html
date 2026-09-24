@@ -1,0 +1,11 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;background:#000}canvas{display:block;width:1280px;height:720px}</style>
+<video id="v" preload="auto" src="http://127.0.0.1:8001/video-reference.mp4"></video>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+const v=document.getElementById('v'), c=document.getElementById('c'), x=c.getContext('2d');
+const t=Number(new URLSearchParams(location.search).get('t')||0);
+v.addEventListener('loadedmetadata',()=>{ v.currentTime=Math.min(t,Math.max(0,v.duration-.05)); });
+v.addEventListener('seeked',()=>{ setTimeout(()=>{ x.drawImage(v,0,0,c.width,c.height); document.title='frame '+t; },1200); });
+</script>

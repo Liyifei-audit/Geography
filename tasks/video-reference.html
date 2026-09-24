@@ -1,0 +1,9 @@
+<!doctype html>
+<meta charset="utf-8">
+<video id="v" controls preload="auto" src="http://127.0.0.1:8001/video-reference.mp4"></video>
+<script>
+const v = document.getElementById('v');
+v.addEventListener('loadedmetadata', () => {
+  document.title = JSON.stringify({duration:v.duration,width:v.videoWidth,height:v.videoHeight});
+});
+</script>
